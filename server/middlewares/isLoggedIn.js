@@ -13,7 +13,7 @@ exports.isLoggedIn = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log(decoded);
-    req.user = await User.findOne(decoded.id);
+    req.user = await User.findById(decoded.id);
   } catch (error) {
     return res.status(401).json({
       success: false,
